@@ -5,6 +5,7 @@
 
 <script>
 import Navbar from './components/Navbar.vue';
+const apiKey = import.meta.env.VITE_API_KEY;
 
 export default {
   name: 'App',
@@ -22,7 +23,7 @@ export default {
         return;
       }
 
-      const movies = await fetch(`https://www.omdbapi.com/?${this.year > 0 ? `y=${this.year}&` : ''}s=${this.title}&apiKey=e6047284`);
+      const movies = await fetch(`https://www.omdbapi.com/?${this.year > 0 ? `y=${this.year}&` : ''}s=${this.title}&apiKey=${apiKey}`);
       const moviesResponse = await movies.json();
       console.log(moviesResponse);
     },
