@@ -1,5 +1,5 @@
 <template>
-  <Navbar></Navbar>
+  <Navbar :onChangeInput="handleInputChange" :titleValue="title" :year="year"></Navbar>
   <RouterView></RouterView>
 </template>
 
@@ -15,9 +15,6 @@ export default {
       year: ''
     }
   },
-  mounted(){
-
-  },
   methods: {
     async getMovies(){
       if(!this.title){
@@ -28,6 +25,11 @@ export default {
       const movies = await fetch(`https://www.omdbapi.com/?${this.year > 0 ? `y=${this.year}&` : ''}s=${this.title}&apiKey=e6047284`);
       const moviesResponse = await movies.json();
       console.log(moviesResponse);
+    },
+
+    handleInputChange(event){
+      const fieldName = event.target.name;
+      this[fieldName] = fieldName === 'year' ? Number(event.target.value) : event.target.value;
     }
   },
   components: {

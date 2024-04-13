@@ -12,8 +12,8 @@
             </li>
         </ul>
         <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Movie title" aria-label="Search" required>
-            <input class="form-control me-2" type="number" placeholder="Year" aria-label="Search" required>
+            <input class="form-control me-2" type="search" placeholder="Movie title" aria-label="Search" @input="onChangeInput" :value="titleValue" name="title" required>
+            <input class="form-control me-2" type="number" placeholder="Year" aria-label="Search" name="year" :value="year" @input="onChangeInput" min="1600" required>
             <button class="btn btn-success" type="submit">Search</button>
         </form>
         </div>
@@ -23,6 +23,19 @@
 
 <script>
 export default {
-    name: 'Navbar'
+    name: 'Navbar',
+    props: {
+        onChangeInput: {
+            type: Function,
+            required: true
+        },
+        titleValue: {
+            type: String,
+            required: true
+        },
+        year: {
+            required: true
+        }
+    }
 }
 </script>
