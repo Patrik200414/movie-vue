@@ -5,7 +5,7 @@
             <h5 class="card-title">{{movie.Title}}</h5>
             <p class="card-text">Year: {{movie.Year}}</p>
             <p class="card-text">Type: {{movie.Type}}</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <RouterLink class="btn btn-primary" :to="`/movie/${movie.imdbID}`">Check out details</RouterLink>
         </div>
     </div>
     

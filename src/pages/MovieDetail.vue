@@ -1,0 +1,9 @@
+<template>
+    <h1>Movie Detail</h1>
+</template>
+
+<script>
+export default {
+    name: 'MovieDetail',
+}
+</script>
