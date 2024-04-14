@@ -1,9 +1,11 @@
 <template>
-    <div v-if="error" class="alert alert-danger" role="alert">{{error}}</div>
-    <template v-else>
-        <h1>Movie Detail</h1>
-
-    </template>
+    <div class="container">
+        <div v-if="error" class="alert alert-danger" role="alert">{{error}}</div>
+        <template v-else-if="Object.keys(movieDetail).length">
+            <h1>Movie Detail</h1>
+    
+        </template>
+    </div>
 </template>
 
 <script>
@@ -34,8 +36,21 @@ export default {
             const response = movieDetailResponse.Response === 'True';
 
             if(response){
-                console.log(movieDetailResponse);
-                this.movieDetail = movieDetailResponse;
+                const textBasedInformation = {};
+
+                for(const detailKey in movieDetailResponse){
+                    if(detailKey !== 'Poster' && detailKey !== 'Ratings'){
+                        textBasedInformation[detailKey] = movieDetailResponse[detailKey];
+                    }
+                }
+
+                const reorganizedData = {
+                    TextBasedInformation: textBasedInformation,
+                    Poster: movieDetailResponse.Poster,
+                    Ratings: movieDetailResponse.Ratings
+                }
+
+                this.movieDetail = reorganizedData;
                 this.error = '';
             } else{
                 this.error = movieDetailResponse.Error;
