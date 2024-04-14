@@ -1,5 +1,5 @@
 <template>
-    <div class="card movie-card">
+    <div class="card movie-card m-3">
         <img src="..." class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">Card title</h5>
