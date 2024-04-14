@@ -11,9 +11,9 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
         </ul>
-        <form class="d-flex">
+        <form class="d-flex" @submit.prevent="onGetMovies">
             <input class="form-control me-2" type="search" placeholder="Movie title" aria-label="Search" @input="onChangeInput" :value="titleValue" name="title" required>
-            <input class="form-control me-2" type="number" placeholder="Year" aria-label="Search" name="year" :value="year" @input="onChangeInput" min="1600" required>
+            <input class="form-control me-2" type="number" placeholder="Year" aria-label="Search" name="year" :value="year" @input="onChangeInput" min="1600">
             <button class="btn btn-success" type="submit">Search</button>
         </form>
         </div>
@@ -35,6 +35,10 @@ export default {
         },
         year: {
             required: true
+        },
+        onGetMovies: {
+            type: Function,
+            required: true        
         }
     }
 }

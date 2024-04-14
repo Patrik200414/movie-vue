@@ -1,5 +1,5 @@
 <template>
-  <Navbar :onChangeInput="handleInputChange" :titleValue="title" :year="year"></Navbar>
+  <Navbar :onChangeInput="handleInputChange" :titleValue="title" :year="year" :onGetMovies="getMovies"></Navbar>
   <RouterView></RouterView>
 </template>
 
