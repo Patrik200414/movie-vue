@@ -3,11 +3,13 @@
         <div v-if="error" class="alert alert-danger" role="alert">{{error}}</div>
         <template v-else-if="movies.length">
             <h1 class="justify-content-lg-center">Searched movies: {{this.$route.query.title}}{{ checkIfYearExists }}</h1>
+            <MovieCard></MovieCard>
         </template>
     </div>
 </template>
 
 <script>
+import MovieCard from '../components/MovieCard.vue';
 const apiKey = import.meta.env.VITE_API_KEY;
 
 export default {
@@ -50,6 +52,9 @@ export default {
         checkIfYearExists(){
             return this.$route.query.year ? ` | ${this.$route.query.year}` : '';
         }
+    },
+    components: {
+        MovieCard: MovieCard,
     }
 
 }
