@@ -3,7 +3,7 @@
         <div v-if="error" class="alert alert-danger" role="alert">{{error}}</div>
         <template v-else-if="movies.length">
             <h1 class="justify-content-lg-center">Searched movies: {{this.$route.query.title}}{{ checkIfYearExists }}</h1>
-            <MovieCard></MovieCard>
+            <MovieCard v-for="movie in movies" :movie="movie"></MovieCard>
         </template>
     </div>
 </template>
