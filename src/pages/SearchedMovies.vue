@@ -38,7 +38,6 @@ export default {
             const moviesResponse = await moviesData.json();
 
             if(moviesData.ok && moviesResponse.Search){
-                console.log(moviesResponse.Search)
                 this.movies = moviesResponse.Search;
                 this.error = '';
             } else{
