@@ -36,7 +36,15 @@ export default {
             const response = movieDetailResponse.Response === 'True';
 
             if(response){
-                const textBasedInformation = {};
+                const reorganizedData = this.reorganizeMovieDetailData(movieDetailResponse);
+                this.movieDetail = reorganizedData;
+                this.error = '';
+            } else{
+                this.error = movieDetailResponse.Error;
+            }
+        },
+        reorganizeMovieDetailData(movieDetailResponse){
+            const textBasedInformation = {};
 
                 for(const detailKey in movieDetailResponse){
                     if(detailKey !== 'Poster' && detailKey !== 'Ratings'){
@@ -44,17 +52,11 @@ export default {
                     }
                 }
 
-                const reorganizedData = {
+                return {
                     TextBasedInformation: textBasedInformation,
                     Poster: movieDetailResponse.Poster,
                     Ratings: movieDetailResponse.Ratings
                 }
-
-                this.movieDetail = reorganizedData;
-                this.error = '';
-            } else{
-                this.error = movieDetailResponse.Error;
-            }
         }
     },
     watch: {
