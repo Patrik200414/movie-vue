@@ -9,7 +9,7 @@ const routes = [
         component: Home
     },
     {
-        path: '/searched-move/:title/',
+        path: '/searched-move',
         component: SearchedMovies
     }
 ]

@@ -32,7 +32,7 @@ export default {
     },
     methods: {
         searchMovie(){
-            this.$router.push(`/searched-move/${this.title}/${this.year ? `?year=${this.year}` : ''}`);
+            this.$router.push(`/searched-move?title=${this.title}${this.year ? `&year=${this.year}` : ''}`);
         }
     },
 }
