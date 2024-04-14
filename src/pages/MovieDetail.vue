@@ -41,6 +41,11 @@ export default {
                 this.error = movieDetailResponse.Error;
             }
         }
+    },
+    watch: {
+        '$route'(){
+            this.getMovieDetails();
+        }
     }
 }
 </script>
