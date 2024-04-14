@@ -1,9 +1,10 @@
 <template>
     <div class="card movie-card m-3">
-        <img src="..." class="card-img-top" alt="...">
+        <img :src="getMovieImage" class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <h5 class="card-title">{{movie.Title}}</h5>
+            <p class="card-text">Year: {{movie.Year}}</p>
+            <p class="card-text">Type: {{movie.Type}}</p>
             <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
     </div>
@@ -11,12 +12,19 @@
 </template>
 
 <script>
+import DefaultMovieImage from '../assets/movie-clapper-open-svgrepo-com.svg';
+
 export default {
     name: 'MovieCard',
     props: {
         movie: {
             type: Object,
             required: true
+        }
+    },
+    computed: {
+        getMovieImage(){
+            return this.movie.Poster === 'N/A' ? DefaultMovieImage : this.movie.Poster;
         }
     }
 }

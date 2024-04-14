@@ -5,7 +5,7 @@
             <h1 class="justify-content-lg-center">Searched movies: {{this.$route.query.title}}{{ checkIfYearExists }}</h1>
             <div class="row justify-content-around">
                 <div class="col-sm-10"></div>
-                <MovieCard v-for="movie in movies" :movie="movie"></MovieCard>
+                <MovieCard v-for="movie in movies" :movie="movie" :key="movie.imdbID"></MovieCard>
             </div>
             
         </template>
@@ -37,7 +37,7 @@ export default {
             const moviesData = await fetch(`https://www.omdbapi.com/?${query.year > 0 ? `y=${query.year}&` : ''}s=${query.title}&apiKey=${apiKey}`);
             const moviesResponse = await moviesData.json();
 
-            if(moviesData.ok){
+            if(moviesData.ok && moviesResponse.Search){
                 console.log(moviesResponse.Search)
                 this.movies = moviesResponse.Search;
                 this.error = '';
