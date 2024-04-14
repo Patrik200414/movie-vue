@@ -34,12 +34,11 @@ export default {
                 this.error = 'Please enter a movie title!';
                 return;
             }
-
-            
-            const moviesData = await fetch(`https://www.omdbapi.com/?${this.year > 0 ? `y=${this.year}&` : ''}s=${this.title}&apiKey=${apiKey}`);
+            const moviesData = await fetch(`https://www.omdbapi.com/?${query.year > 0 ? `y=${query.year}&` : ''}s=${query.title}&apiKey=${apiKey}`);
             const moviesResponse = await moviesData.json();
 
             if(moviesData.ok){
+                console.log(moviesResponse.Search)
                 this.movies = moviesResponse.Search;
                 this.error = '';
             } else{
