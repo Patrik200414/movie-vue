@@ -7,12 +7,18 @@
                 <img :src="getMoviePoster" :alt="movieDetail.TextBasedInformation.Title" :title="movieDetail.TextBasedInformation.Title">
             </div>
             <h2>{{movieDetail.TextBasedInformation.Title}}</h2>
+            <table class="table table-dark">
+                <tbody>
+                    <TableRow v-for="(value, key) in movieDetail.TextBasedInformation" :key="`${key}-${value}`" :detail="key" :value="value"></TableRow>
+                </tbody>
+            </table>
         </template>
     </div>
 </template>
 
 <script>
 import DefaultMovieImage from '../assets/movie-clapper-open-svgrepo-com.svg';
+import TableRow from '../components/TableRow.vue';
 
 const apiKey = import.meta.env.VITE_API_KEY;
 
@@ -74,6 +80,9 @@ export default {
         '$route'(){
             this.getMovieDetails();
         }
+    },
+    components: {
+        TableRow: TableRow
     }
 }
 </script>
