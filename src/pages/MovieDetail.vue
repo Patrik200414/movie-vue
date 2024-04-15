@@ -3,12 +3,17 @@
         <div v-if="error" class="alert alert-danger" role="alert">{{error}}</div>
         <template v-else-if="Object.keys(movieDetail).length">
             <h1>Movie Detail</h1>
-    
+            <div v-if="Object.keys(movieDetail).length" class="d-flex flex-row justify-content-center">
+                <img :src="getMoviePoster" :alt="movieDetail.TextBasedInformation.Title" :title="movieDetail.TextBasedInformation.Title">
+            </div>
+            <h2>{{movieDetail.TextBasedInformation.Title}}</h2>
         </template>
     </div>
 </template>
 
 <script>
+import DefaultMovieImage from '../assets/movie-clapper-open-svgrepo-com.svg';
+
 const apiKey = import.meta.env.VITE_API_KEY;
 
 export default {
@@ -37,6 +42,7 @@ export default {
 
             if(response){
                 const reorganizedData = this.reorganizeMovieDetailData(movieDetailResponse);
+                console.log(reorganizedData);
                 this.movieDetail = reorganizedData;
                 this.error = '';
             } else{
@@ -59,6 +65,11 @@ export default {
                 }
         }
     },
+    computed: {
+        getMoviePoster(){
+            return this.movieDetail.Poster !== 'N/A' ? this.movieDetail.Poster : DefaultMovieImage;
+        }
+    },
     watch: {
         '$route'(){
             this.getMovieDetails();
@@ -66,3 +77,9 @@ export default {
     }
 }
 </script>
+
+<style>
+h2{
+    text-align: center;
+}
+</style>
